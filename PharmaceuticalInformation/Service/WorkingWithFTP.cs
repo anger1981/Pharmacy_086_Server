@@ -14,8 +14,6 @@ namespace PharmaceuticalInformation.Service
 
         #region ' Fields '
 
-        //
-        //private FtpWebRequest RequestOfDownload02;
         private FtpWebResponse ResponseOfGettingListOfFile;
         private FtpWebResponse ResponseOfDownloadingFile;
 
@@ -39,92 +37,6 @@ namespace PharmaceuticalInformation.Service
 
 
         #region ' GettingListOfDirectory '
-
-        /*
-        // Getting List Of Directory (ARH)
-        public ArrayList GettingListOfDirectory(string PathToFTP, bool UsePassive)
-        {
-            //
-            ArrayList ListOfFilesOfFTP = new ArrayList();
-            //
-            try
-            {
-                //
-                // !!!
-                //
-                FtpWebRequest RequestToFTP = (FtpWebRequest)WebRequest.Create(PathToFTP);
-                RequestToFTP.Timeout = 1000 * 60 * 5;
-                RequestToFTP.UsePassive = UsePassive;
-                RequestToFTP.Method = WebRequestMethods.Ftp.ListDirectory;
-                FtpWebResponse ResponseOfFTP = (FtpWebResponse)RequestToFTP.GetResponse();
-                StreamReader ReadingOfList = new StreamReader(ResponseOfFTP.GetResponseStream());
-                string TextOfListOfFiles = ReadingOfList.ReadToEnd();
-                string[] Sep = new string[1] { String.Format("{0}{1}", (char)13, (char)10) };
-                ListOfFilesOfFTP.AddRange(TextOfListOfFiles.Split(Sep, StringSplitOptions.RemoveEmptyEntries));
-                //
-                // !!!
-                //
-                ResponseOfFTP.Close();
-                ReadingOfList.Close();
-                ReadingOfList.Dispose();
-                //
-                ResponseOfFTP = null;
-                ReadingOfList = null;
-                RequestToFTP = null;
-                //
-                for (int i = 0; i < 8; i++)
-                    GC.Collect();
-            }
-            catch (Exception E) { ReturningMessageAboutError("Ошибка при получении списка файлов", E, false); }
-            // Return
-            return ListOfFilesOfFTP;
-        }
-        */
-
-        /*
-        // Getting List Of Directory (ARH)
-        public ArrayList GettingListOfDirectory02(string PathToFTP, bool UsePassive)
-        {
-            //
-            ArrayList ListOfFilesOfFTP = new ArrayList();
-            //
-            try
-            {
-                //
-                // !!!
-                //
-                FtpWebRequest RequestToFTP = (FtpWebRequest)WebRequest.Create(PathToFTP);
-                RequestToFTP.Timeout = 1000 * 60 * 5;
-                RequestToFTP.ReadWriteTimeout = 1000 * 60 * 5;
-                RequestToFTP.UsePassive = UsePassive;
-                RequestToFTP.KeepAlive = true;
-                RequestToFTP.Method = WebRequestMethods.Ftp.ListDirectory;
-                ResponseOfGettingListOfFile = (FtpWebResponse)RequestToFTP.GetResponse();
-                StreamReader ReadingOfList = new StreamReader(ResponseOfGettingListOfFile.GetResponseStream());
-                string TextOfListOfFiles = ReadingOfList.ReadToEnd();
-                string[] Sep = new string[1] { String.Format("{0}{1}", (char)13, (char)10) };
-                ListOfFilesOfFTP.AddRange(TextOfListOfFiles.Split(Sep, StringSplitOptions.RemoveEmptyEntries));
-                //
-                // !!!
-                //
-                //ResponseOfFTP02.Close();
-                //ReadingOfList.Close();
-                //ReadingOfList.Dispose();
-                //
-                //ResponseOfFTP = null;
-                //ReadingOfList = null;
-                //RequestToFTP = null;
-                //
-                /*
-                for (int i = 0; i < 8; i++)
-                    GC.Collect();
-                8/
-            }
-            catch (Exception E) { ReturningMessageAboutError("Ошибка при получении списка файлов", E, false); }
-            // Return
-            return ListOfFilesOfFTP;
-        }
-        */
 
         // Getting List Of Directory For Server
         public ArrayList GettingListOfDirectory03(string PathToFTP, bool UsePassive)
@@ -349,7 +261,6 @@ namespace PharmaceuticalInformation.Service
                 RequestOfDownload.Timeout = 1000 * 60 * 5;
                 //RequestOfDownload.KeepAlive = true;
                 RequestOfDownload.UsePassive = UsePassive;
-                //RequestOfDownload.Method = WebRequestMethods.Ftp.DownloadFile;
                 //
                 FtpWebResponse ResponseOfDownload = (FtpWebResponse)RequestOfDownload.GetResponse();
                 StreamOfResponse = ResponseOfDownload.GetResponseStream();
@@ -386,9 +297,6 @@ namespace PharmaceuticalInformation.Service
             {
                 //
                 ResultOfOperation = false;
-                //
-                /*ReturningMessageAboutError(
-                    String.Format("{0} {1}", "Ошибка при скачивании файла", PathToDownloadingFile), E, false);*/
                 //
                 RecordingInLogFile(
                     String.Format(
@@ -467,9 +375,6 @@ namespace PharmaceuticalInformation.Service
             {
                 //
                 ResultOfOperation = false;
-                //
-                /*ReturningMessageAboutError(
-                    String.Format("{0} {1}", "Ошибка при скачивании файла", PathToDownloadingFile), E, false);*/
                 //
                 RecordingInLogFile(
                     String.Format(
@@ -562,20 +467,14 @@ namespace PharmaceuticalInformation.Service
             //
             bool ResultOfOperation = true;
             //
-            //if (RequestOfDownload02 != null)
-            //FtpWebRequest RequestOfDeletings = null;
-            //FtpWebResponse ResponseOfDeletings = null;
-            //
             try
             {
                 FtpWebRequest RequestOfDeletings = (FtpWebRequest)WebRequest.Create(PathToFTPFile);
-                //RequestOfDeletings.Timeout = 1000 * 60 * 5;
-                //RequestOfDeletings.KeepAlive = true;
-                //RequestOfDeletings.UsePassive = true;
+
                 RequestOfDeletings.Method = WebRequestMethods.Ftp.DeleteFile;
-                //this.RecordingInLogFile("R 1");
+
                 FtpWebResponse ResponseOfDeletings = (FtpWebResponse)RequestOfDeletings.GetResponse();
-                //this.RecordingInLogFile("R 2");
+  
                 //
                 // Clearing Working With FTP
                 //
@@ -583,10 +482,6 @@ namespace PharmaceuticalInformation.Service
                 ResponseOfDeletings = null;
                 RequestOfDeletings = null;
                 //
-                /*
-                for (int i = 0; i < 8; i++)
-                    GC.Collect();
-                */
             }
             catch (Exception E)
             {
@@ -596,27 +491,6 @@ namespace PharmaceuticalInformation.Service
                 ReturningMessageAboutError(
                     String.Format("{0} {1}", "Ошибка при удалении файла", PathToFTPFile), E, false);
             }
-            finally
-            {
-                //
-                /*if (ResponseOfDeletings != null)
-                    ResponseOfDeletings.Close();
-                //
-                ResponseOfDeletings = null;*/
-                //RequestOfDeletings = null;
-                //
-                /*
-                if (ResponseOfDownloadingFile != null)
-                    ResponseOfDownloadingFile.Close();
-                //
-                ResponseOfDownloadingFile = null;
-                */
-            }
-            //
-            /*
-            for (int i = 0; i < 8; i++)
-                GC.Collect();
-            */
             //
             // Return
             //

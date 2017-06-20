@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ServerOfSystem</RootNamespace>
     <AssemblyName>Server</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
     <FileUpgradeFlags>
@@ -32,6 +32,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +43,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,30 +53,189 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <Aliases>SLD</Aliases>
+    </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PharmaceuticalInformation\AbsentProduct.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\Announcement.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\comparison.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\C__HistoryOfSearchRequestsIMP.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\C__ModifiedData.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\C__Renaming01.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\DatesOfTransfer.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\District.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\HistoryOfChangesOfPrice.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\HistoryOfReception.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\HistoryOfSearchRequest.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\IDsOfExistingProduct.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\InformationOfSetting.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\InhalersComparison.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\InhalersPrice.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\InhalersProduct.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\ListOfSetting.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\LoadedProduct.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\LogsOfDrugstore.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\ModificationsOfPrice.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\NewInhalersComparison.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\Operator.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\DataTools\DataTableEnumerate.cs" />
+    <Compile Include="PharmaceuticalInformation\DataTools\EFPharmacyInformationRepository.cs" />
+    <Compile Include="PharmaceuticalInformation\DataTools\PharmacyInformationRelease.cs" />
     <Compile Include="PharmaceuticalInformation\Drugstore\ConvertingOfPriceList.cs" />
+    <Compile Include="PharmaceuticalInformation\Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="PharmaceuticalInformation\Server\ExchangeBetweenSystemAndQueues.cs" />
     <Compile Include="PharmaceuticalInformation\Server\ExportingOfData.cs" />
     <Compile Include="PharmaceuticalInformation\Server\ImportingOfData.cs" />
     <Compile Include="PharmaceuticalInformation\Server\Server.cs" />
-    <Compile Include="PharmaceuticalInformation\Server\SynchronizationOfDataOfDataBases.cs" />
     <Compile Include="PharmaceuticalInformation\Service\Reportings.cs" />
     <Compile Include="PharmaceuticalInformation\Service\WorkingWithFiles.cs" />
     <Compile Include="PharmaceuticalInformation\Service\WorkingWithFTP.cs" />
-    <Compile Include="PharmaceuticalInformation\Updating\UpdatingOfDataOfInformation.cs" />
-    <Compile Include="PharmaceuticalInformation\Updating\UpdatingOfDataOfInformationForMsSQL.cs" />
     <Compile Include="PharmaceuticalInformation\BaseTypes\BaseType.cs" />
+    <Compile Include="PharmaceuticalInformation\Interfaces\PharmacyInformation.cs" />
+    <Compile Include="PharmaceuticalInformation\Pharmacy.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\PhrmInfMod.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhrmInfMod.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\PhrmInfMod.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\PhrmInfMod.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhrmInfMod.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\PREP_MEDENERGOFARM_COMPARISONS.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\PREP_ZDOROVO_COMPARISONS.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\PriceIDsTMP.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\PriceListTMP.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\price_list.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\PrivateImporting.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\Product.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\ProductsFromDL.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\Product_group.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PharmaceuticalInformation\RecodingIDsOfDrugstoresOfImporting.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\RegistrationOfDrugstore.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\ReportsOfImportingOfPriceList.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\Service.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\sp_helpdiagrams_Result.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\sysdiagram.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmaceuticalInformation\Terminal.cs">
+      <DependentUpon>PhrmInfMod.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -92,13 +253,35 @@
     <Compile Include="Server.Designer.cs">
       <DependentUpon>Server.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="PharmaceuticalInformation\PhrmInfMod.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PhrmInfMod.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config" />
+    <None Include="PharmaceuticalInformation\PhrmInfMod.edmx.diagram">
+      <DependentUpon>PhrmInfMod.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PharmaceuticalInformation\PhrmInfMod.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PhrmInfMod.Context.cs</LastGenOutput>
+      <DependentUpon>PhrmInfMod.edmx</DependentUpon>
+    </Content>
+    <Content Include="PharmaceuticalInformation\PhrmInfMod.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PhrmInfMod.edmx</DependentUpon>
+      <LastGenOutput>PhrmInfMod.cs</LastGenOutput>
+    </Content>
     <None Include="Resources\icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

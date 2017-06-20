@@ -12,8 +12,6 @@ namespace PharmaceuticalInformation.Drugstore
 
         #region ' Fields '
 
-        //private string _PathToFolderOfPriceLists;
-        //private bool _NotDeletingPriceList;
         private string _MaskOfFullPriceList;
         private string _MaskOfReceipts;
         private string _MaskOfDeleting;
@@ -39,18 +37,6 @@ namespace PharmaceuticalInformation.Drugstore
         #endregion
 
         #region ' Parameters Of Converting '
-
-        /*public string PathToFolderOfPriceLists
-        {
-            get { return _PathToFolderOfPriceLists; }
-            set { _PathToFolderOfPriceLists = value; }
-        }*/
-
-        /*public bool NotDeletingPriceList
-        {
-            get { return _NotDeletingPriceList; }
-            set { _NotDeletingPriceList = value; }
-        }*/
 
         public string MaskOfFullPriceList
         {
@@ -125,7 +111,7 @@ namespace PharmaceuticalInformation.Drugstore
             // Selection Of Type Of PriceList
             //
             bool RecognitionOfMask = false, AllPrices = false, Deleting = false;
-            //string NameOfFile = Path.GetFileNameWithoutExtension(PathToFile);
+
             string NameOfFile = Path.GetFileName(PathToFile);
             //
             if (_MaskOfFullPriceList.Length > 0)
@@ -809,18 +795,13 @@ namespace PharmaceuticalInformation.Drugstore
                 // Reading file of price-list in table
                 DataSet PricesForTransformation = new DataSet("XML");
                 FileStream FS = new FileStream(PathToFile, FileMode.Open, FileAccess.Read);
-                //StreamReader SR = new StreamReader(FS, Encoding.Default);
-                //RecordingInLogFile(SR.ReadToEnd());
-                //FS.Position = 0;
-                //new System.Xml.XmlReaderSettings().
+
                 System.Xml.XmlReader X = System.Xml.XmlReader.Create(FS);
                 RecordingInLogFile(X.XmlLang);
                 RecordingInLogFile(X.Value);
                 RecordingInLogFile(X.AttributeCount.ToString());
                 RecordingInLogFile(X.LocalName);
-                //PricesForTransformation.ReadXmlSchema(SR);
-                //PricesForTransformation.ReadXml(SR);
-                //PricesForTransformation.ReadXml(PathToFile);
+
                 RecordingInLogFile("Read");
                 //
                 if (PricesForTransformation.Tables.Contains("Аптека"))
@@ -835,11 +816,9 @@ namespace PharmaceuticalInformation.Drugstore
                         //
                         if (UseOfIDOfPriceList)
                         {
-                            //RecordingInLogFile("Use of ID of drugstore");
                             //"Код"
                             if ((CurrentDrugstore[1] != null) && (CurrentDrugstore[1] != ""))
                                 IDOfPharmacy = Convert.ToInt32(CurrentDrugstore[1]);
-                            //RecordingInLogFile(String.Format("ID Of Drugstore: {0}", IDOfPharmacy));
                         }
                         //
                         //RecordingInLogFile(String.Format("Count of prices: {0}", CurrentDrugstore.GetChildRows("Аптека_ТоварнаяПозиция").Length));
@@ -870,8 +849,6 @@ namespace PharmaceuticalInformation.Drugstore
                             //
                             try
                             {
-                                //RecordingInLogFile(String.Format("Value of price of product 01: {0}", CurrentPrice["Цена"].ToString()));
-                                //RecordingInLogFile(String.Format("Value of price of product 02: {0}", ReplaceSeparator(CurrentPrice["Цена"].ToString())));
                                 //
                                 if (CurrentPrice.Table.Columns.Contains("Цена"))
                                 {
@@ -882,7 +859,6 @@ namespace PharmaceuticalInformation.Drugstore
                                     NewPrice[2] = Convert.ToDecimal(ReplaceSeparator(CurrentPrice[1].ToString()));
                                 }
                                 //
-                                //RecordingInLogFile(String.Format("Price of product: {0}", NewPrice[2]));
                             }
                             catch { NewPrice[2] = -1; }
                             //
@@ -1362,137 +1338,7 @@ namespace PharmaceuticalInformation.Drugstore
             // Return
             //
             return PriceList;
-        }
-
-        // Type 10
-        /*private DataTable ConvertingOfPriceListOfType10(string PathToFile, int IDOfPharmacy,
-            bool UseOfIDOfPriceList, bool Deleting, bool AllPrices)
-        {
-            //
-            /*
-            System.Data.OleDb.OleDbConnection ConnectionToBase = 
-                new System.Data.OleDb.OleDbConnection();
-
-            string sPath_AbonDB = "";
-            int total;
-            int count = 0;
-            decimal step;
-            decimal step_count = 0;
-
-            pb_ed.Maximum = 200;
-            pb_ed.Step = 2;
-            
-            if (ConnectionToBase.State == ConnectionState.Open)
-                ConnectionToBase.Close();
-            ConnectionToBase.ConnectionString = sConnectionString_Abon;
-            try
-            {
-                //sLog = "Выгрузка из Абонент: " + sPath_AbonDB;
-                RecordingInLogFile("Выгрузка из Абонент: " + sPath_AbonDB);
-                //Log_output(sLog, sLog_file);
-                ConnectionToBase.Open();
-            }
-            catch (System.Data.OleDb.OleDbException ex)
-            {
-                RecordingInLogFile("!! Невозможна выгрузка из Абонент. Ошибка: " + ex.Message);
-                //return;
-            }
-
-            //sLog = "Заполнение временной таблицы";, sLog_file
-            Reportings.RecordingInLog("Заполнение временной таблицы");
-            Pharm66.dsPharm66TableAdapters.ta_AptDrugPresent ta_AptDrugPresent =
-                new Pharm66.dsPharm66TableAdapters.ta_AptDrugPresent();
-            ta_AptDrugPresent.Connection = OleDbCon_Abon;
-            try
-            {
-                ta_AptDrugPresent.Fill(ds_Pharm66.dt_AptDrugPresent, Id_Pharmacy_Abon);
-            }
-            catch (Exception ex)
-            {
-                //sLog = "!! Ошибка при выгрузке из Абонент: " + ex.Message;, sLog_file
-                Reportings.RecordingInLog("!! Ошибка при выгрузке из Абонент: " + ex.Message);
-
-                return;
-            }
-            clear_exp_price_list();
-            //this.ds_Pharm66.dt_prices.Clear();
-            //foreach (DataRow drPharmacy in ds.Tables["Аптека"].Rows)
-
-            try
-            {
-                if (SqlCom_exp_price_list.Connection.State == ConnectionState.Closed)
-                    SqlCom_exp_price_list.Connection.Open();
-            }
-            catch (MySqlException ex)
-            {
-                //sLog = "!! Невозможно подключиться к базе данных: " + ex.Message;
-                //Log_output(sLog, sLog_file);
-                Reportings.RecordingInLog("!! Невозможно подключиться к базе данных: " + ex.Message);
-            }
-            total = Convert.ToInt32(ds_Pharm66.dt_AptDrugPresent.Rows.Count);
-            step = total / pb_ed.Maximum * pb_ed.Step;
-            step_count = step;
-            pb_ed.Value = 0;
-            pb_ed.Visible = true;
-            b_LoadingPriceList.Enabled = false;
-            MessageBox.Show("Произведена выгрузка из программы Абонент. Сейчас данные будут сохранены. Дождитесь, пока полоска внизу заполнится зелёным.");
-            //sLog = "Сохранение данных в базу";
-            //Log_output(sLog, sLog_file);
-            Reportings.RecordingInLog("Сохранение данных в базу");
-
-            foreach (DataRow drPrice in ds_Pharm66.dt_AptDrugPresent.Rows)
-            {
-                try
-                {
-                    SqlCom_exp_price_list.Parameters[0].Value = Id_Pharmacy;
-                    SqlCom_exp_price_list.Parameters[1].Value = drPrice.ItemArray[0];
-                    SqlCom_exp_price_list.Parameters[2].Value = Convert.ToDecimal(drPrice.ItemArray[1]) / 100;
-                    SqlCom_exp_price_list.Parameters[3].Value = 0;
-                    SqlCom_exp_price_list.Parameters[4].Value = 1;
-                    SqlCom_exp_price_list.ExecuteNonQuery();
-                    count++;
-                    if (count >= step_count)
-                    {
-                        step_count = step_count + step;
-                        pb_ed.PerformStep();
-                    }
-                    //pb_ed.Refresh();
-                    Application.DoEvents();
-                }
-                catch (MySqlException ex)
-                {
-                    //sLog = "!! " + ex.Message;
-                    //Log_output(sLog, sLog_file);
-                    Reportings.RecordingInLog("!! " + ex.Message);
-                    pb_ed.Visible = false;
-                    b_LoadingPriceList.Enabled = true;
-                    return;
-                }
-            }
-            pb_ed.Visible = false;
-            b_LoadingPriceList.Enabled = true;
-            l_CountOfPrices.Text = "Загружено препаратов: " + Convert.ToString(total);
-            MessageBox.Show("Данные сохранены. Сейчас будет обновлена информация на экране.");
-
-            //sLog = "Обновление данных в таблице";
-            //Log_output(sLog, sLog_file);
-            Reportings.RecordingInLog("Обновление данных в таблице");
-            try
-            {
-                Ed_prices_Fill();
-            }
-            catch (Exception ex)
-            {
-                //sLog = "!! Ошибка при обновлении данных в таблице: " + ex.Message;
-                //Log_output(sLog, sLog_file);
-                Reportings.RecordingInLog("!! Ошибка при обновлении данных в таблице: " + ex.Message);
-                return;
-            }
-
-            //8/
-            // Return
-            return new DataTable();
-        }*/
+        }        
 
         #endregion
 

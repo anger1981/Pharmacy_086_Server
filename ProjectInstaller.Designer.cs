@@ -28,23 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            //components = new System.ComponentModel.Container();
-            //
             this.serviceProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
             this.serviceInstaller1 = new System.ServiceProcess.ServiceInstaller();
             // 
             // serviceProcessInstaller1
             // 
+            this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
             this.serviceProcessInstaller1.Password = "";
             this.serviceProcessInstaller1.Username = "";
-            //
-            this.serviceInstaller1.ServicesDependedOn = new string[1] { "SQL Server (MSSQLSERVER)" };
             // 
             // serviceInstaller1
             // 
             this.serviceInstaller1.Description = "Server Of Pharmaceutical Information";
             this.serviceInstaller1.DisplayName = "ServerOfPharmaceuticalInformation";
             this.serviceInstaller1.ServiceName = "ServerOfPharmaceuticalInformation";
+            this.serviceInstaller1.ServicesDependedOn = new string[] {
+        "SQL Server (SQLEXPRESS)"};
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
@@ -52,6 +51,7 @@
             this.Installers.AddRange(new System.Configuration.Install.Installer[] {
             this.serviceProcessInstaller1,
             this.serviceInstaller1});
+
         }
 
         #endregion
