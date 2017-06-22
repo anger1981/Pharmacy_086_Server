@@ -33,7 +33,7 @@
             // 
             // serviceProcessInstaller1
             // 
-            this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
+            this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalService;
             this.serviceProcessInstaller1.Password = "";
             this.serviceProcessInstaller1.Username = "";
             // 
@@ -44,7 +44,6 @@
             this.serviceInstaller1.ServiceName = "ServerOfPharmaceuticalInformation";
             this.serviceInstaller1.ServicesDependedOn = new string[] {
         "SQL Server (SQLEXPRESS)"};
-            this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
             // 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6d6bc49f70814810b48c1851b8c46671" Name="Diagram1">
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.AbsentProduct" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.Announcement" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.comparison" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.DatesOfTransfer" Width="1.5" PointX="2.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.District" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.HistoryOfChangesOfPrice" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.HistoryOfReception" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.IDsOfExistingProduct" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.InformationOfSetting" Width="1.5" PointX="5.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.ListOfSetting" Width="1.5" PointX="5.25" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.ModificationsOfPrice" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.Pharmacy" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.price_list" Width="1.5" PointX="5.25" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.PrivateImporting" Width="1.5" PointX="8.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.Product" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.Product_group" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.RecodingIDsOfDrugstoresOfImporting" Width="1.5" PointX="11" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.RegistrationOfDrugstore" Width="1.5" PointX="8.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.ReportsOfImportingOfPriceList" Width="1.5" PointX="10.5" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.Service" Width="1.5" PointX="10.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.Terminal" Width="1.5" PointX="10.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.C__HistoryOfSearchRequestsIMP" Width="1.5" PointX="12.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.C__ModifiedData" Width="1.5" PointX="12.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.C__Renaming01" Width="1.5" PointX="12.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.HistoryOfSearchRequest" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.InhalersComparison" Width="1.5" PointX="13.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.InhalersPrice" Width="1.5" PointX="12.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.InhalersProduct" Width="1.5" PointX="14.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.LoadedProduct" Width="1.5" PointX="14.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.LogsOfDrugstore" Width="1.5" PointX="5.25" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.NewInhalersComparison" Width="1.5" PointX="14.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.Operator" Width="1.5" PointX="14.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.PREP_MEDENERGOFARM_COMPARISONS" Width="1.5" PointX="15.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.PREP_ZDOROVO_COMPARISONS" Width="1.5" PointX="14.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.PriceIDsTMP" Width="1.5" PointX="16.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.PriceListTMP" Width="1.5" PointX="16.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmaceuticalInformationModel.ProductsFromDL" Width="1.5" PointX="7.75" PointY="17.375" IsExpanded="true" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_AbsentProducts_pharmacy" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_Announcements_pharmacy" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_pharmacy_district" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_HistoryOfChangesOfPrices_ModificationsOfPrices" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_HistoryOfChangesOfPrices_Pharmacy" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_HistoryOfChangesOfPrices_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_HistoryOfReceptions_pharmacy" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_ReportsOfImportingOfPriceLists_HistoryOfReceptions" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_InformationOfSettings_pharmacy" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_ListOfSettings_pharmacy" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_LogsOfDrugstores_pharmacy" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_price_list_pharmacy" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_ReportsOfImportingOfPriceLists_pharmacy" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_RecodingIDsOfDrugstoresOfImportings_PrivateImportings" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmaceuticalInformationModel.FK_HistoryOfSearchRequests_Product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

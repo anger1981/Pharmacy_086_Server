@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Test_pharm_server.PharmaceuticalInformation.DataTools;
-using Test_pharm_server.PharmaceuticalInformation.Interfaces;
+using ServerOfSystem.PharmaceuticalInformation.DataTools;
+using ServerOfSystem.PharmaceuticalInformation.Interfaces;
 
-namespace Test_pharm_server.PharmaceuticalInformation.Infrastructure
+namespace ServerOfSystem.PharmaceuticalInformation.Infrastructure
 {
     public static class NinjectDependencyResolver
     {

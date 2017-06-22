@@ -5,14 +5,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using PharmaceuticalInformation.BaseTypes;
-using Test_pharm_server;
 using System.Linq;
 using EntityFramework.Extensions;
-using Test_pharm_server.PharmaceuticalInformation.DataTools;
+using ServerOfSystem.PharmaceuticalInformation.DataTools;
 using System.Data.Linq.Mapping;
 using System.Reflection;
-using Test_pharm_server.PharmaceuticalInformation.Interfaces;
-using Test_pharm_server.PharmaceuticalInformation.Infrastructure;
+using ServerOfSystem.PharmaceuticalInformation.Interfaces;
+using ServerOfSystem.PharmaceuticalInformation.Infrastructure;
 using Ninject;
 
 namespace PharmaceuticalInformation.Server
@@ -216,7 +215,7 @@ namespace PharmaceuticalInformation.Server
             try
             {
                 IPhrmInf.EFPhrmInf.Services.Where(s => s.Id_Service == 8)
-                    .Update(s => new Test_pharm_server.PharmaceuticalInformation.Service { Date_Service = DateOfExported });
+                    .Update(s => new ServerOfSystem.PharmaceuticalInformation.Model.Service { Date_Service = DateOfExported });
             }
             catch (Exception E)
             {
@@ -240,7 +239,7 @@ namespace PharmaceuticalInformation.Server
             try
             {
                 IPhrmInf.EFPhrmInf.Services.Where(s => s.Id_Service == 8)
-                    .Update(s => new Test_pharm_server.PharmaceuticalInformation.Service { Value = s.Value + 1 });
+                    .Update(s => new ServerOfSystem.PharmaceuticalInformation.Model.Service { Value = s.Value + 1 });
             }
             catch (Exception E)
             {
@@ -507,7 +506,7 @@ namespace PharmaceuticalInformation.Server
             try
             {
                 IPhrmInf.EFPhrmInf.Services.Where(s => s.Id_Service == 6)
-                    .Update(s => new Test_pharm_server.PharmaceuticalInformation.Service { Value = s.Value + 1, Date_Service = DateOfExported });
+                    .Update(s => new ServerOfSystem.PharmaceuticalInformation.Model.Service { Value = s.Value + 1, Date_Service = DateOfExported });
             }
             catch (Exception E)
             {
@@ -581,7 +580,7 @@ namespace PharmaceuticalInformation.Server
             try
             {
                 IPhrmInf.EFPhrmInf.Services.Where(s => s.Id_Service == 10)
-                    .UpdateAsync(s => new Test_pharm_server.PharmaceuticalInformation.Service { Date_Service = DateOfExported });
+                    .UpdateAsync(s => new ServerOfSystem.PharmaceuticalInformation.Model.Service { Date_Service = DateOfExported });
             }
             catch (Exception E)
             {
@@ -1829,7 +1828,7 @@ namespace PharmaceuticalInformation.Server
             try
             {
                 IPhrmInf.EFPhrmInf.Services.Where(s => s.Id_Service == IDOfNumber)
-                    .Update(s => new Test_pharm_server.PharmaceuticalInformation.Service { Value = NewNumber });
+                    .Update(s => new ServerOfSystem.PharmaceuticalInformation.Model.Service { Value = NewNumber });
             }
             catch (Exception E)
             {
@@ -1847,7 +1846,7 @@ namespace PharmaceuticalInformation.Server
             try
             {
                 IPhrmInf.EFPhrmInf.Services.Where(s => s.Id_Service == IDOfDate)
-                    .Update(s => new Test_pharm_server.PharmaceuticalInformation.Service { Date_Service = NewDate });
+                    .Update(s => new ServerOfSystem.PharmaceuticalInformation.Model.Service { Date_Service = NewDate });
             }
             catch (Exception E)
             {
@@ -1865,7 +1864,7 @@ namespace PharmaceuticalInformation.Server
             try
             {
                 IPhrmInf.EFPhrmInf.Services.Where(s => s.Id_Service == IDOfNumber)
-                    .Update(s => new Test_pharm_server.PharmaceuticalInformation.Service { Value = s.Value + 1 });
+                    .Update(s => new ServerOfSystem.PharmaceuticalInformation.Model.Service { Value = s.Value + 1 });
             }
             catch (Exception E)
             {

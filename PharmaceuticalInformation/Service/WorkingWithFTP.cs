@@ -16,6 +16,7 @@ namespace PharmaceuticalInformation.Service
 
         private FtpWebResponse ResponseOfGettingListOfFile;
         private FtpWebResponse ResponseOfDownloadingFile;
+        private bool UsePassive = true;
 
         #endregion
 
@@ -39,10 +40,14 @@ namespace PharmaceuticalInformation.Service
         #region ' GettingListOfDirectory '
 
         // Getting List Of Directory For Server
-        public ArrayList GettingListOfDirectory03(string PathToFTP, bool UsePassive)
+        public ArrayList GettingListOfDirectory03(string PathToFTP)
         {
             //
             ArrayList ListOfFilesOfFTP = new ArrayList();
+
+            RecordingInLogFile("GettingListOfDirectory03");
+            RecordingInLogFile(PathToFTP);
+            RecordingInLogFile("");
             //
             try
             {
@@ -82,7 +87,14 @@ namespace PharmaceuticalInformation.Service
                 //
                 RequestToFTP = null;
             }
-            catch (Exception E) { ReturningMessageAboutError("Ошибка при получении списка файлов", E, false); }
+            catch (Exception E)
+            {
+                RecordingInLogFile("Ошибка при получении списка файлов");
+                RecordingInLogFile(E.Message);
+                RecordingInLogFile(E.GetBaseException().Message);
+                RecordingInLogFile("");
+                //ReturningMessageAboutError("Ошибка при получении списка файлов", E, false);
+            }
             //
             // Return
             //
@@ -100,7 +112,7 @@ namespace PharmaceuticalInformation.Service
         }
 
         // Getting List Of Directory For Drugstore
-        public ArrayList GettingListOfDirectory04(string PathToFTP, bool UsePassive)
+        public ArrayList GettingListOfDirectory04(string PathToFTP)
         {
             //
             ArrayList ListOfFilesOfFTP = new ArrayList();
@@ -168,7 +180,7 @@ namespace PharmaceuticalInformation.Service
 
 
         // Uploading File
-        public bool UploadingFile(string PathToLoadingFile, string PathToFTPFile, bool UsePassive)
+        public bool UploadingFile(string PathToLoadingFile, string PathToFTPFile)
         {
             //
             // !!!
@@ -243,7 +255,7 @@ namespace PharmaceuticalInformation.Service
         #region ' DownloadingFile02 '
 
         // Downloading File For Drugstor
-        public bool DownloadingFile(string PathToFTPFile, string PathToDownloadingFile, bool UsePassive)
+        public bool DownloadingFile(string PathToFTPFile, string PathToDownloadingFile)
         {
             //
             // !!!
@@ -326,7 +338,7 @@ namespace PharmaceuticalInformation.Service
         }
 
         // Downloading File For Servere
-        public bool DownloadingFile02(string PathToFTPFile, string PathToDownloadingFile, bool UsePassive)
+        public bool DownloadingFile02(string PathToFTPFile, string PathToDownloadingFile)
         {
             //
             // !!!

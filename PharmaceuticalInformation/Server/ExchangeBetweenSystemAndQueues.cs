@@ -6,8 +6,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using PharmaceuticalInformation.BaseTypes;
-using Test_pharm_server.PharmaceuticalInformation.Infrastructure;
-using Test_pharm_server.PharmaceuticalInformation.Interfaces;
+using ServerOfSystem.PharmaceuticalInformation.Infrastructure;
+using ServerOfSystem.PharmaceuticalInformation.Interfaces;
 using Ninject;
 
 namespace PharmaceuticalInformation.Server
@@ -69,6 +69,9 @@ namespace PharmaceuticalInformation.Server
             //
             // Initializing Transfer
             //
+            RecordingInLogFile("ExchangeBetweenSystemAndQueues Init");
+            RecordingInLogFile("");
+
             ImportingOfData = new ImportingOfData(_IPhrmInf, PathToLogFile);
             ExportingOfData = new ExportingOfData(_IPhrmInf, PathToLogFile);
             //
@@ -181,14 +184,19 @@ namespace PharmaceuticalInformation.Server
         public void DownloadingDataFromFTP(StringBuilder LogsOfMethod)
         {
             //
-            //RecordingInLogFile("Checking Importing");
+            RecordingInLogFile("DownloadingDataFromFTP");
+            RecordingInLogFile("");
             //
             // Getting List Of Imported Files
             //
             ArrayList ListOfImportedFiles = new ArrayList();
             //
-            foreach (string CurrentFileName in WorkingWithFTP.GettingListOfDirectory03(_PathOfImportingDataFromQueue, false))
+            foreach (string CurrentFileName in WorkingWithFTP.GettingListOfDirectory03(_PathOfImportingDataFromQueue))
+            {
+                RecordingInLogFile(String.Format("DownloadingDataFromFTP: File {0}", CurrentFileName));
+                RecordingInLogFile("");
                 ListOfImportedFiles.Add(String.Format("{0}{1}", _PathOfImportingDataFromQueue, CurrentFileName));
+            }
             //
             // Checking Of Count Of List Of Files
             //
@@ -232,7 +240,7 @@ namespace PharmaceuticalInformation.Server
                     //
                     RecordingInLogFile("Starting Importing From FTP");
                     //
-                    try { ResultOfImporting = WorkingWithFTP.DownloadingFile02(PathOfFileOnFTP, PathOfFileARH, false); }
+                    try { ResultOfImporting = WorkingWithFTP.DownloadingFile02(PathOfFileOnFTP, PathOfFileARH); }
                     catch (Exception E)
                     { RecordingInLogFile(String.Format("ERROR Error Of Importing Data From FTP: {0}", E.Message)); }
                     //
@@ -255,6 +263,8 @@ namespace PharmaceuticalInformation.Server
                         // Deleting Of File On FTP
                         //
                         WorkingWithFTP.DeletingFile02(PathOfFileOnFTP);
+
+                        RecordingInLogFile("0");
                         //
                         // Processing Of Imported File
                         //
@@ -264,11 +274,16 @@ namespace PharmaceuticalInformation.Server
                             // Extraction From Archive
                             //
                             LogsOfMethod.Append("A");
+                            RecordingInLogFile("A");
+                            RecordingInLogFile(_PathOfArchivingProgram);
+                            RecordingInLogFile(PathOfFileARH);
+                            RecordingInLogFile(_PathOfTMPFolder);
                             if (WorkingWithFiles.ExtractionFromArchive(_PathOfArchivingProgram,
                                 PathOfFileARH, _PathOfTMPFolder))
                             {
                                 //
                                 LogsOfMethod.Append("B");
+                                RecordingInLogFile("B");
                                 //
                                 // Renaming Name Of File
                                 //
@@ -291,8 +306,10 @@ namespace PharmaceuticalInformation.Server
                                 // Deleting Archive
                                 //
                                 LogsOfMethod.Append("C");
+                                RecordingInLogFile("C");
                                 WorkingWithFiles.DeletingFile(PathOfFileARH);
                                 LogsOfMethod.Append("D");
+                                RecordingInLogFile("D");
                                 //
                                 // Loading BIN File
                                 //
@@ -303,6 +320,7 @@ namespace PharmaceuticalInformation.Server
                                         // Converting BIN To DataSet
                                         //
                                         LogsOfMethod.Append("E");
+                                        RecordingInLogFile("E");
                                         //
                                         System.IO.FileStream FS =
                                             new System.IO.FileStream(
@@ -314,6 +332,7 @@ namespace PharmaceuticalInformation.Server
                                         //
                                         LogsOfMethod.Append("F");
                                         //
+                                        RecordingInLogFile("F");
                                         try { ImportingOfData.ImportingDataFromDrugstore(DataFromDrugstore); }
                                         catch (Exception E)
                                         {
@@ -388,7 +407,7 @@ namespace PharmaceuticalInformation.Server
             ArrayList ListOfNamesOfFilesForImporting = new ArrayList();
             //
             ListOfNamesOfFilesForImporting = 
-                WorkingWithFTP.GettingListOfDirectory03(_PathOfImportingDataFromQueue, true);
+                WorkingWithFTP.GettingListOfDirectory03(_PathOfImportingDataFromQueue);
             //
             foreach (string CurrentFileName in ListOfNamesOfFilesForImporting)
                 ListOfFilesForImporting.Add(String.Format("{0}{1}", _PathOfImportingDataFromQueue, CurrentFileName));
@@ -461,7 +480,7 @@ namespace PharmaceuticalInformation.Server
                         {
                             ResultOfDownloading = 
                                 WorkingWithFTP.DownloadingFile02(
-                                PathToFileInQueueOfImporting, PathToImportedFile, false);
+                                PathToFileInQueueOfImporting, PathToImportedFile);
                         }
                         catch (Exception E)
                         {
@@ -744,7 +763,7 @@ namespace PharmaceuticalInformation.Server
                         CurrentImporter.PathOfImporting);
                     //
                     ArrayList ListOfFilesOfPriceListsOfImporter = 
-                        WorkingWithFTP.GettingListOfDirectory03(PathToListOfPriceListsOfImporter, false);
+                        WorkingWithFTP.GettingListOfDirectory03(PathToListOfPriceListsOfImporter);
                     //
                     // Checking Count Of Files Of PriceLists Of Importer
                     //
@@ -806,7 +825,7 @@ namespace PharmaceuticalInformation.Server
                                 {
                                     ResultOfDownloading =
                                         WorkingWithFTP.DownloadingFile02(
-                                        PathToFileInStorage, PathToDownloadedFile, false);
+                                        PathToFileInStorage, PathToDownloadedFile);
                                 }
                                 catch (Exception E)
                                 {
@@ -998,7 +1017,7 @@ namespace PharmaceuticalInformation.Server
             RecordingInLogFile("Checking Importing IodineFace");
             //
             ArrayList ListOfImportedFiles = 
-                WorkingWithFTP.GettingListOfDirectory03(_PathOfImportingOfIodineFace, false);
+                WorkingWithFTP.GettingListOfDirectory03(_PathOfImportingOfIodineFace);
             //
             // Checking Of Count Of List Of Files
             //
@@ -1021,7 +1040,7 @@ namespace PharmaceuticalInformation.Server
                     //
                     // Downloading File From Importing
                     //
-                    if (WorkingWithFTP.DownloadingFile(PathOfFileOnFTP, PathOfFileTXT, false))
+                    if (WorkingWithFTP.DownloadingFile(PathOfFileOnFTP, PathOfFileTXT))
                     {
                         //
                         // Waiting Of TXT
@@ -1179,7 +1198,7 @@ namespace PharmaceuticalInformation.Server
                             if (WorkingWithFiles.IsAccessFile(PathOfFileRAR))
                             {
                                 // false true
-                                if (WorkingWithFTP.UploadingFile(PathOfFileRAR, PathOfFileOnFTP, false))
+                                if (WorkingWithFTP.UploadingFile(PathOfFileRAR, PathOfFileOnFTP))
                                 {
                                     //
                                     this.RecordingInLogFile("Loading File To FTP");
@@ -1208,7 +1227,7 @@ namespace PharmaceuticalInformation.Server
                                     //
                                     bool ExistingFile = false;
                                     ArrayList ListOfFilesExported = 
-                                        WorkingWithFTP.GettingListOfDirectory03(_PathOfExportingDataOfFTP, false);
+                                        WorkingWithFTP.GettingListOfDirectory03(_PathOfExportingDataOfFTP);
                                     //
                                     foreach (string CurrentName in ListOfFilesExported)
                                         if (Path.GetFileNameWithoutExtension(CurrentName) == NameOfUpdating)
@@ -1341,7 +1360,7 @@ namespace PharmaceuticalInformation.Server
                                 RecordingInLogFile("Starting Of Uploading");
                                 //
                                 ResultOfUploading = 
-                                  WorkingWithFTP.UploadingFile(PathOfFileRAR, PathOfFileOnFTP, false);
+                                  WorkingWithFTP.UploadingFile(PathOfFileRAR, PathOfFileOnFTP);
                                 //
                                 RecordingInLogFile("Stoping Of Uploading");
                             }
@@ -1480,7 +1499,7 @@ namespace PharmaceuticalInformation.Server
                             // Uploading RAR File
                             //
                             if (WorkingWithFiles.IsAccessFile(PathOfFileRAR))
-                                if (WorkingWithFTP.UploadingFile(PathOfFileRAR, PathOfFileOnFTP, false))
+                                if (WorkingWithFTP.UploadingFile(PathOfFileRAR, PathOfFileOnFTP))
                                 {
                                     //
                                     // Checking Of File RAR
@@ -1576,7 +1595,7 @@ namespace PharmaceuticalInformation.Server
                             //
                             // false true
                             if (WorkingWithFiles.IsAccessFile(PathOfFileRAR))
-                                if (WorkingWithFTP.UploadingFile(PathOfFileRAR, PathOfFileOnFTP, false))
+                                if (WorkingWithFTP.UploadingFile(PathOfFileRAR, PathOfFileOnFTP))
                                 {
                                     //
                                     // Checking Of File RAR
@@ -1700,7 +1719,7 @@ namespace PharmaceuticalInformation.Server
                     //
                     if (WorkingWithFiles.IsAccessFile(PathToFileInArchive))
                         ResultOfUploadingFile = 
-                            WorkingWithFTP.UploadingFile(PathToFileInArchive, PathToFileInQueue, true);
+                            WorkingWithFTP.UploadingFile(PathToFileInArchive, PathToFileInQueue);
                     //
                     // !!!
                     //

@@ -5,14 +5,14 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using PharmaceuticalInformation.BaseTypes;
-using Test_pharm_server;
 using System.Linq;
 using EntityFramework.Extensions;
-using Test_pharm_server.PharmaceuticalInformation.DataTools;
-using Test_pharm_server.PharmaceuticalInformation.Infrastructure;
-using Test_pharm_server.PharmaceuticalInformation.Interfaces;
-using Test_pharm_server.PharmaceuticalInformation;
+using ServerOfSystem.PharmaceuticalInformation.DataTools;
+using ServerOfSystem.PharmaceuticalInformation.Infrastructure;
+using ServerOfSystem.PharmaceuticalInformation.Interfaces;
+using ServerOfSystem.PharmaceuticalInformation;
 using Ninject;
+using ServerOfSystem.PharmaceuticalInformation.Model;
 
 namespace PharmaceuticalInformation.Server
 {

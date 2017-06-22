@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.ServiceProcess;
 using System.Text;
+using  pi = PharmaceuticalInformation;
 
 namespace ServerOfSystem
 {
@@ -13,7 +14,7 @@ namespace ServerOfSystem
 
         #region ' Fields '
 
-        private PharmaceuticalInformation.Server.Server _ServerOfPharmaceuticalInformation;
+        private pi.Server.Server _ServerOfPharmaceuticalInformation;
         // =             new PharmaceuticalInformation.Server();
 
         #endregion
@@ -25,7 +26,7 @@ namespace ServerOfSystem
             //
             InitializeComponent();
             //
-            _ServerOfPharmaceuticalInformation = new PharmaceuticalInformation.Server.Server();
+            _ServerOfPharmaceuticalInformation = new pi.Server.Server();
         }
 
         #endregion

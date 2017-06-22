@@ -13,9 +13,10 @@ using System.Collections;
 using sld = SLD::System.Linq.Dynamic;
 using System.Data.Linq.Mapping;
 using System.Data.Linq;
+using ServerOfSystem.PharmaceuticalInformation.Model;
 //using  sld = System.Linq.Dynamic;
 
-namespace Test_pharm_server.PharmaceuticalInformation.DataTools
+namespace ServerOfSystem.PharmaceuticalInformation.DataTools
 {
     public partial class LocalDataContext : DataContext
     {

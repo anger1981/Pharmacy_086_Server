@@ -95,6 +95,7 @@ namespace PharmaceuticalInformation.Service
             bool ResultOfOperation = true;
             try
             {
+                this.RecordingInLogFile("extract arc begin");
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
@@ -103,9 +104,11 @@ namespace PharmaceuticalInformation.Service
                 process.StartInfo.FileName = PathToArchivingProgram;
                 process.Start();
                 process.Close();
+                this.RecordingInLogFile("extract arc end");
             }
             catch (Exception E)
             {
+                this.RecordingInLogFile(String.Format("{0}: {1}", "Ошибка при извлечении из архива", PathToArchive, E.Message));
                 ResultOfOperation = false;
                 ReturningMessageAboutError(
                     String.Format("{0}: {1}", "Ошибка при извлечении из архива", PathToArchive), E, false);

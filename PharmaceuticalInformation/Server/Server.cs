@@ -4,8 +4,8 @@ using System.Text;
 using System.IO;
 using PharmaceuticalInformation.BaseTypes;
 using System.Xml;
-using Test_pharm_server.PharmaceuticalInformation.Infrastructure;
-using Test_pharm_server.PharmaceuticalInformation.Interfaces;
+using ServerOfSystem.PharmaceuticalInformation.Infrastructure;
+using ServerOfSystem.PharmaceuticalInformation.Interfaces;
 using Ninject;
 
 namespace PharmaceuticalInformation.Server
@@ -65,7 +65,11 @@ namespace PharmaceuticalInformation.Server
             //
             // !!!
             //
+
             InitializingOfFields();
+
+            this.RecordingInLogFile("Server Init");
+            this.RecordingInLogFile("");
         }
 
         // Initializing Of Fields
@@ -153,11 +157,12 @@ namespace PharmaceuticalInformation.Server
             // Initializing Working
             //
             InWork = false;
-            //HourOfLastExportingOfScripts = DateTime.Now.Hour;
-            //HourOfLastExportingOfData = DateTime.Now.Hour;
-            //HourOfNextPrivateImporting = 0;
+            HourOfLastExportingOfScripts = DateTime.Now.Hour;
+            HourOfLastExportingOfData = DateTime.Now.Hour;
+            HourOfNextPrivateImporting = 0;
 
-            //CountOfIterationWithLastScraping = 0;
+            CountOfIterationWithLastScraping = 0;
+
         }
 
         #endregion
@@ -167,29 +172,29 @@ namespace PharmaceuticalInformation.Server
         // Starting Of Server
         public void StartingOfServer()
         {
-            ////
-            //// Starting
-            ////
-            //// Timer Of Importing Data
-            //TimerOfImportingData =
-            //    new System.Threading.Timer(new System.Threading.TimerCallback(TimerOfImportingData_Tick),
-            //        null, new TimeSpan(0, 0, 0), new TimeSpan(0, 1, 0));
+            //
+            // Starting
+            //
+            // Timer Of Importing Data
+            TimerOfImportingData =
+                new System.Threading.Timer(new System.Threading.TimerCallback(TimerOfImportingData_Tick),
+                    null, new TimeSpan(0, 0, 0), new TimeSpan(0, 1, 0));
 
-            ////
-            //RecordingInLogFile("Starting Service");
-            //RecordingInLogFile("");
+            //
+            RecordingInLogFile("Starting Service");
+            RecordingInLogFile("");
         }
 
         // Stoping Of Server
         public void StopingOfServer()
         {
-            ////
-            //// Stoping
-            ////
-            //TimerOfImportingData.Dispose();
-            ////
-            //RecordingInLogFile("Stoping Service");
-            //RecordingInLogFile("");
+            //
+            // Stoping
+            //
+            TimerOfImportingData.Dispose();
+            //
+            RecordingInLogFile("Stoping Service");
+            RecordingInLogFile("");
         }
 
         #endregion
@@ -199,7 +204,10 @@ namespace PharmaceuticalInformation.Server
         // Timer Of Importing
         private void TimerOfImportingData_Tick(object sender)
         {
-            //
+            //      
+            this.RecordingInLogFile("TimerOfImportingData_Tick");
+            this.RecordingInLogFile("");
+
             if (!InWork)
             {               
                 CountOfIterationWithLastScraping++;
@@ -214,6 +222,9 @@ namespace PharmaceuticalInformation.Server
                     //
                     CountOfIterationWithLastScraping  = 0;
                 }
+
+                this.RecordingInLogFile("InWork");
+                this.RecordingInLogFile("");
 
                 InWork = true;
                 //

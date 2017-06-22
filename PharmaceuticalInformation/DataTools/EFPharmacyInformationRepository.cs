@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ServerOfSystem.PharmaceuticalInformation.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Test_pharm_server.PharmaceuticalInformation.Interfaces;
+using ServerOfSystem.PharmaceuticalInformation.Interfaces;
 
-namespace Test_pharm_server.PharmaceuticalInformation.DataTools
+namespace ServerOfSystem.PharmaceuticalInformation.DataTools
 {
     class EFPharmacyInformationRepository : IPharmacyInformation
     {
